@@ -1,0 +1,4 @@
+This nmap distribution was obtained from: https://nmap.org/download.html
+This guide demonstrates how to use nmap
+
+-- Perform a network scan --
