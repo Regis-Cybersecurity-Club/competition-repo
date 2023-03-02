@@ -15,14 +15,17 @@ do
 	saved_sha="${saved_sha% ' '*}"
 	
 	
-	#If modified, display the warning, otherwise list it's OK
+	#If modified, display the warning, otherwise list it's OK (ONLY WHEN THERE'S NOT TOO MANY FILES BEING MONITORED)
 	if [ "$live_sha" != "$saved_sha" ];
 	then 
 		echo -e "\t$file: MODIFIED"
 		warning_count=$((warning_count+1))
-	else
+		echo "$(diff monitor/$file $file)"
+	elif [ "${#files[@]}" -le "20" ];
+	then
 		echo -e "\t$file: OK"
 	fi
+	
 	filenum=$((filenum+1))
 done
 
